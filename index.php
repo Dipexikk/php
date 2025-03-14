@@ -9,19 +9,18 @@
 
 <body>
     <?php include "components/header.php" ?>
-    <h1>SIGMA</h1>
-
+    <h1>LOW PETR BREIT JE NEJVĚTŠÍ SIGMA</h1>
 
     <?php
 
 
-$server = "localhost"; // Server MySQL
-$uzivatel = "root"; // Výchozí uživatel (změň podle potřeby)
-$heslo = ""; // Výchozí heslo (u XAMPP prázdné)
-$databaze = "sigma"; // Název databáze
+$servername = "localhost"; // Server MySQL
+$username = "root"; // Výchozí uživatel (změň podle potřeby)
+$password = "root"; // Výchozí heslo (u XAMPP prázdné)
+$dbname = "sigma"; // Název databáze
 
 // Připojení k MySQL
-$conn = new mysqli($server, $uzivatel, $heslo, $databaze);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Kontrola připojení
 if ($conn->connect_error) {
@@ -38,7 +37,11 @@ $vysledek = $conn->query($sql);
 if ($vysledek->num_rows > 0) {
     echo "<table border='1'><tr><th>ID</th><th>Název</th><th>Cena za kus</th><th>Počet kusů</th></tr>";
     while ($radek = $vysledek->fetch_assoc()) {
-        echo "<tr><td>" . $radek["ID"] . "</td><td>" . $radek["Nazev"] . "</td><td>" . $radek["Cena_za_kus"] . "</td><td>" . $radek["Pocet_kusu"] . "</td></tr>";
+        echo "<tr><td>" . 
+            $radek["ID"] . "</td><td>" . 
+            $radek["Název"] . "</td><td>" . 
+            $radek["Cena_za_kus"] . "</td><td>" . 
+            $radek["Pocet_kusu"] . "</td></tr>";
     }
     echo "</table>";
 } else {
